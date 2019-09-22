@@ -20,10 +20,15 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url "https://oss.sonatype.org/content/repositories/releases" }
     maven { url "https://build.shibboleth.net/nexus/content/repositories/releases/" }
     maven { url "https://repo.spring.io/milestone/" }
     maven { url "https://repo.spring.io/snapshot/" }
+    maven { url "https://repo.spring.io/libs-release/" }
     maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+    maven { url "https://dl.bintray.com/uniconiam/maven" }
+    maven { url "https://maven.repository.redhat.com/ga/" }
+    maven { url "https://jitpack.io" }    
 }
 
 def casServerVersion = project.'cas.version'
@@ -41,10 +46,13 @@ apply plugin: "idea"
 
 apply from: rootProject.file("gradle/springboot.gradle")
 apply from: rootProject.file("gradle/dockerjib.gradle")
+apply from: rootProject.file("gradle/cassupport.gradle")
 
 dependencies {
-    // Other CAS dependencies/modules may be listed here...
-    // compile "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
+    def buildAll = project.hasProperty("buildAll") && Boolean.valueOf(project.getProperty("buildAll"))
+    if (buildAll) {
+        compile libraries.cassupport
+    }
 }
 
 tasks.findByName("jibDockerBuild")
@@ -54,7 +62,17 @@ tasks.findByName("jibDockerBuild")
 tasks.findByName("jib")
     .dependsOn(copyWebAppIntoJib, copyConfigIntoJib)
     .finalizedBy(deleteWebAppFromJib)
-    
+
+// temporary exclusions for jars finding there way into cas.war
+// transitive dependencies should be tracked down and appropriate exclusions added
+configurations {
+    runtime.exclude group: 'ch.qos.logback'
+    runtime.exclude module: 'ehcache-core'
+    compile.exclude group: 'ch.qos.logback'
+    compile.exclude module: 'ehcache-core'
+}
+
+
 configurations.all {
     resolutionStrategy {
         cacheChangingModulesFor 0, "seconds"
@@ -71,8 +89,8 @@ configurations.all {
 
 eclipse {
     classpath {
-       downloadSources = true
-       downloadJavadoc = true
+        downloadSources = true
+        downloadJavadoc = true
     }
 }
 
@@ -95,7 +113,7 @@ bootWar {
             provided = false
             //excludes = ["WEB-INF/lib/somejar-1.0*"]
         }
-    }    
+    }
 }
 
 
