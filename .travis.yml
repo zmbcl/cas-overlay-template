@@ -61,5 +61,5 @@ jobs:
       script: ./docker-build.sh
       name: "Build Docker Image"
     - stage: docker
-      script: ./docker/full/build.sh
+      script: cd docker/full && ./build.sh
       name: "Build Full Docker Image"
