@@ -127,6 +127,58 @@
                 <!--
                 ...Additional dependencies may be placed here...
                 -->
+                <dependency>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                    <version>3.8.1</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-jdbc</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-jdbc-drivers</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>8.0.11</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-shiro-authentication</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <!--自定义密码认证需要依赖 start-->
+                <dependency>
+                    <groupId>org.springframework.security</groupId>
+                    <artifactId>spring-security-core</artifactId>
+                    <version>4.2.3.RELEASE</version>
+                </dependency>
+                <!-- 自定义密码认证需要依赖 end-->
+
+                <!--自定义登录验证需要的依赖 start-->
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-authentication</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-authentication-api</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-webflow</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <!--自定义登录验证需要的依赖 end-->
             </dependencies>
         </profile>
 
@@ -215,41 +267,5 @@
         </profile>
     </profiles>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-jdbc</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-jdbc-drivers</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.11</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-shiro-authentication</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>4.2.3.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-        </dependency>
-
-
-    </dependencies>
 </project>

@@ -225,6 +225,9 @@
         <AsyncLogger name="com.it.cas.CustomPasswordEncoder" level="info" includeLocation="true">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
+        <AsyncLogger name="com.it.cas.MyAuthenticationHandler" level="info" includeLocation="true">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger>
         <AsyncRoot level="error">
             <AppenderRef ref="casConsole"/>
         </AsyncRoot>
