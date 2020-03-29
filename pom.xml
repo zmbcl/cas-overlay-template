@@ -74,7 +74,9 @@
 
         <mainClassName>org.springframework.boot.loader.WarLauncher</mainClassName>
         <isExecutable>false</isExecutable>
-        <manifestFileToUse>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp${app.server}/META-INF/MANIFEST.MF</manifestFileToUse>
+        <manifestFileToUse>
+            ${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp${app.server}/META-INF/MANIFEST.MF
+        </manifestFileToUse>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -235,6 +237,19 @@
             <artifactId>cas-server-support-shiro-authentication</artifactId>
             <version>${cas.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>4.2.3.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
 
     </dependencies>
 </project>
